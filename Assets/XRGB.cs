@@ -126,9 +126,10 @@ public class XRGB : MonoBehaviour
 
     private IEnumerator Scanner()
     {
-        //Debug.Log("Waiting...");
+        //Log("Waiting...");
         yield return new WaitUntil(() => currentGenRowIx == 1000);
-        //Debug.Log("Start scanning");
+        //Log("Start scanning");
+        float elapsed = 0;
         while (true)
         {
             while (scannerIx < 1000)
@@ -139,12 +140,15 @@ public class XRGB : MonoBehaviour
                     row[i] = displayedSymbol[rowIx][i];
                 //Debug.Log(_displayedSymbol[scannerIx][500]);
                 SetScreen(row);
-                scannerIx += (int)(Time.deltaTime * 250);
+                elapsed += Time.deltaTime;
+                scannerIx = (int)(elapsed * 250);
                 yield return null;
                 //Debug.Log(scannerIx);
             }
             scannerIx = 0;
             SetScreen(allBlack);
+            //Log("Scan finished in {0} seconds, restarting scan...", elapsed);
+            elapsed = 0;
             yield return new WaitForSeconds(1);
         }
     }
@@ -175,7 +179,7 @@ public class XRGB : MonoBehaviour
                     int b = chosenSymbols[2][ix].a != 0 ? 127 : 0;
 
                     if (r == 0 && g == 0 && b == 0 && chosenSymbols[3][ix].a != 0)
-                        row[slot] = new Color32(0x34, 0x34, 0x34, 0xFF);
+                        row[slot] = new Color32(0x44, 0x44, 0x44, 0xFF);
                     else if (chosenSymbols[3][ix].a != 0)
                         row[slot] = new Color32((byte)(2 * r), (byte)(2 * g), (byte)(2 * b), 0xFF);
                     else
@@ -187,7 +191,7 @@ public class XRGB : MonoBehaviour
             }
             yield return null;
         }
-        //Log("Done");
+        //Log("Done generating rows");
     }
     private void Log(string msg, params object[] args)
     {
