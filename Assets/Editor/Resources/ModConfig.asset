@@ -18,4 +18,4 @@ MonoBehaviour:
     xrgb\r\nManual can be found at ktane.timwi.de\r\n"
   version: 1.0
   outputFolder: build
-  previewImage: {fileID: 2800000, guid: bd5c1f4881f57d54481b44e4c8a7779a, type: 3}
+  previewImage: {fileID: 2800000, guid: dcc650f94ecec6045b6bd74a542691c7, type: 3}
