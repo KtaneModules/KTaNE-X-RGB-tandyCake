@@ -23,6 +23,9 @@ public class XRGB : MonoBehaviour
         { 4, 3, 0, 0, 3, 2, 1, 4, 1 },
         { 2, 3, 1, 0, 4, 3, 1, 2, 4 }
     };
+    private static readonly string[] symbolIds = { "1 flipped", "7", "100", "107", "99", "2", "6", "62", "33",
+                                                    "66", "55", "96", "21", "3 flipped", "69", "102", "0", "101",
+                                                    "103", "23", "58", "4", "9", "104", "95", "18", "11" };
     private static readonly Color32[] allBlack = Enumerable.Repeat(new Color32(0, 0, 0, 255), 1000).ToArray();
 
     private Texture2D prevTexture;
@@ -82,11 +85,11 @@ public class XRGB : MonoBehaviour
 
     private void LogStuff()
     {
-        Log("Symbols are being scanned from {0}.", topToBottom ? "top to bottom" : "bottom to top");
-        Log("Displayed red channel is symbol {0}.", symbolSprites[usedSymbols[0]].name);
-        Log("Displayed green channel is symbol {0}.", symbolSprites[usedSymbols[1]].name);
-        Log("Displayed blue channel is symbol {0}.", symbolSprites[usedSymbols[2]].name);
-        Log("Displayed brightness channel is symbol {0}.", symbolSprites[usedSymbols[3]].name);
+        Log("The symbols are being scanned from {0}.", topToBottom ? "top to bottom" : "bottom to top");
+        Log("Displayed red channel shows [{0}], which corresponds to {1}.", symbolIds[usedSymbols[0]], correspondingNumbers[0] + 1);
+        Log("Displayed green channel shows [{0}], which corresponds to {1}.", symbolIds[usedSymbols[1]], correspondingNumbers[1] + 1);
+        Log("Displayed blue channel shows [{0}], which corresponds to {1}.", symbolIds[usedSymbols[2]], correspondingNumbers[2] + 1);
+        Log("Displayed brightness channel shows [{0}], which corresponds to {1}.", symbolIds[usedSymbols[3]], correspondingNumbers[3] + 1);
         Log("Solution button is button {0}.", _answerButton + 1);
     }
 
